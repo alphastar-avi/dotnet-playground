@@ -1,0 +1,11 @@
+# .NET build output
+bin/
+obj/
+
+# OS files
+.DS_Store
+
+# IDE
+.vs/
+.vSCode/
+
