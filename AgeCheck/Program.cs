@@ -1,12 +1,17 @@
 ﻿using System;
 
-Console.Write("Enter your age: ");
-string? input = Console.ReadLine();
+namespace AgeCheck;
 
-if (!int.TryParse(input, out int age))
+class Program
 {
-    Console.WriteLine("Invalid age");
-    return;
-}
+    static void Main()
+    {
+        Console.Write("Enter age: ");
+        int age = int.Parse(Console.ReadLine());
 
-Console.WriteLine(age >= 18 ? "You are over 18 ✅" : "You are under 18 ❌");
+        if (Validator.IsAdult(age))
+            Console.WriteLine("Adult");
+        else
+            Console.WriteLine("Minor");
+    }
+}
