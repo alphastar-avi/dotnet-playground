@@ -13,5 +13,8 @@ class Program
             Console.WriteLine("Adult");
         else
             Console.WriteLine("Minor");
+        Console.WriteLine("hello");
     }
+    
+   
 }
