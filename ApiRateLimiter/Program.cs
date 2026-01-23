@@ -10,9 +10,9 @@ class Program
             Console.Write("> ");
             string? input = Console.ReadLine();
 
-            //Nice to have 
-            // if (string.IsNullOrWhiteSpace(input))
-            //     continue;
+            //White space or null input can be skipped
+            if (string.IsNullOrWhiteSpace(input))
+                continue;
 
             string command = input.Trim().ToLower();
 
@@ -28,7 +28,7 @@ class Program
                     break;
 
                 case "exit":
-                    PrintMessage("Exiting application...");
+                    Console.WriteLine("Exiting application...");
                     return;
 
                 default:
@@ -42,24 +42,22 @@ class Program
     static void PrintHeader(){
         Console.WriteLine();
         Console.WriteLine("API Rate Limiter");
-        Console.WriteLine("Type 'help' for commands");
+        Console.WriteLine("Type help for commands");
         Console.WriteLine("---------------------");
     }
 
     static void PrintHelp(){
+
         Console.WriteLine();
-        Console.WriteLine("Command        Description");
-        Console.WriteLine("--------------------------");
-        Console.WriteLine("help           Show help");
-        Console.WriteLine("clear          Clear console");
-        Console.WriteLine("exit           Exit application");
+        Console.WriteLine("Avilable commands:");
+        Console.WriteLine();
+        Console.WriteLine("help - Show help");
+        Console.WriteLine("clear - Clear console");
+        Console.WriteLine("exit  - Exit application");
         Console.WriteLine();
     }
 
-    static void PrintMessage(string message){
-        Console.WriteLine(message);
-    }
-
+    //So that we can reuse 
     static void PrintError(string message){
         Console.WriteLine($"Error: {message}");
     }
