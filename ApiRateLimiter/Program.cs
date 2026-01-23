@@ -44,6 +44,7 @@ class Program
         Console.WriteLine("API Rate Limiter");
         Console.WriteLine("Type help for commands");
         Console.WriteLine("---------------------");
+        Console.WriteLine();
     }
 
     static void PrintHelp(){
