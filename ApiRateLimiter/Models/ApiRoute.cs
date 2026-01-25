@@ -21,7 +21,7 @@ namespace Models{
             return true;
         }
 
-        // Reset count (we'll use this later)
+        // Reset count 
         public void Reset(){
             CurrentCount = 0;
         }
