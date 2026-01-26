@@ -3,7 +3,7 @@ using Models;
 
 namespace Services{
 
-    class RateLimiterService
+    class RateLimiterService : IRateLimiterService
     {   
         //map to hold the relation
         private readonly Dictionary<string, ApiRoute> _routes;

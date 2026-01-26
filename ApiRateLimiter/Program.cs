@@ -6,7 +6,8 @@ class Program
     static void Main(string[] args)
     {
     
-        var rateLimiter = new RateLimiterService();
+        //var rateLimiter = new RateLimiterService();
+        IRateLimiterService rateLimiter = new RateLimiterService(); //DI using interface
 
         // welcome message 
         PrintHeader();
@@ -62,7 +63,7 @@ class Program
     }
 
     // Add a new API route
-    static void HandleAdd(RateLimiterService service)
+    static void HandleAdd(IRateLimiterService service)
     {
         Console.Write("Route name: ");
         string? name = Console.ReadLine();
@@ -78,7 +79,7 @@ class Program
         }
 
         // try to add route
-        bool added = service.AddRoute(name!, limit);
+        bool added = service.AddRoute(name, limit);
 
         if (added)
             Console.WriteLine("Route added successfully");
@@ -87,7 +88,7 @@ class Program
     }
 
     // simulate api request
-    static void HandleRequest(RateLimiterService service)
+    static void HandleRequest(IRateLimiterService service)
     {
         Console.Write("Route name: ");
         string? name = Console.ReadLine();
@@ -101,7 +102,7 @@ class Program
     }
 
     // show route usage details
-    static void HandleStatus(RateLimiterService service)
+    static void HandleStatus(IRateLimiterService service)
     {
         Console.Write("Route name: ");
         string? name = Console.ReadLine();
