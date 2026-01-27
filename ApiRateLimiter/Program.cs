@@ -55,6 +55,11 @@ class Program
                     Console.WriteLine("Exiting application...");
                     return;
 
+                case "reset":
+                    HandleReset(rateLimiter);
+                    Console.WriteLine();
+                    break;
+
                 default:
                     PrintError("Unknown command");
                     break;
@@ -120,6 +125,18 @@ class Program
         Console.WriteLine($"Used : {route.CurrentCount}");
     }
 
+    static void HandleReset(IRateLimiterService service)
+    {
+        Console.Write("Route name: ");
+        string? name = Console.ReadLine();
+
+        if (!service.ResetRoute(name!))
+            PrintError("Route not found");
+        else
+            Console.WriteLine("Route Limit resetted");
+    }
+
+
     // default startup message
     static void PrintHeader()
     {
@@ -150,4 +167,6 @@ class Program
     {
         Console.WriteLine($"Error: {message}");
     }
+    
+    
 }

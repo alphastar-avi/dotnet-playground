@@ -5,7 +5,7 @@ namespace Models{
         public int Limit { get; private set; }
         public int CurrentCount { get; private set; }
 
-        // Constructor: route must have a name and limit when created
+        // Constructor, route must have a name and limit when created
         public ApiRoute(string name, int limit){
             Name = name;
             Limit = limit;

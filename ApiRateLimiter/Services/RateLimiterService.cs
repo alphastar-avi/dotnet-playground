@@ -39,6 +39,22 @@ namespace Services{
             //if not present return null (the '?' allows null)
             return null;
         }
+
+        public bool ResetRoute(string routeName)
+        {
+            //if (_routes.ContainsKey(routeName))
+            //{
+            //    _routes[routeName].Reset();
+            //    return true;
+            //} Double lookup ... try get value is better i guess
+
+            if (!_routes.TryGetValue(routeName, out var route))
+                return false;
+
+            route.Reset();   // resets CurrentCount of that route
+            return true;
+        }
+
     }
 
 }
