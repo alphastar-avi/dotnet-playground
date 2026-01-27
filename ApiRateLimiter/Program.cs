@@ -1,5 +1,6 @@
 ﻿using System;
 using Services;
+using Models;
 
 class Program
 {
@@ -36,6 +37,11 @@ class Program
                     Console.WriteLine();
                     break;
 
+                case "addtime":
+                    HandleAddTime(rateLimiter);
+                    Console.WriteLine();
+                    break;
+
                 case "request":
                     HandleRequest(rateLimiter);
                     Console.WriteLine();
@@ -67,7 +73,7 @@ class Program
         }
     }
 
-    // Add a new API route
+    // Add a new API route with counter strategy
     static void HandleAdd(IRateLimiterService service)
     {
         Console.Write("Route name: ");
@@ -83,11 +89,45 @@ class Program
             return;
         }
 
-        // try to add route
-        bool added = service.AddRoute(name, limit);
+        // try to add route with counter strategy
+        bool added = service.AddRoute(name!, limit);
 
         if (added)
-            Console.WriteLine("Route added successfully");
+            Console.WriteLine("Counter route added successfully");
+        else
+            PrintError("Route already exists");
+    }
+
+    // Add a new API route with time strategy
+    static void HandleAddTime(IRateLimiterService service)
+    {
+        Console.Write("Route name: ");
+        string? name = Console.ReadLine();
+
+        Console.Write("Limit: ");
+        string? limitInput = Console.ReadLine();
+
+        Console.Write("Window (seconds): ");
+        string? windowInput = Console.ReadLine();
+
+        // check if inputs are valid integers
+        if (!int.TryParse(limitInput, out int limit) || limit <= 0)
+        {
+            PrintError("Invalid limit");
+            return;
+        }
+
+        if (!int.TryParse(windowInput, out int windowSeconds) || windowSeconds <= 0)
+        {
+            PrintError("Invalid window seconds");
+            return;
+        }
+
+        // try to add route with time strategy
+        bool added = service.AddTimeRoute(name!, limit, windowSeconds);
+
+        if (added)
+            Console.WriteLine($"Time route added successfully ({limit} requests per {windowSeconds} seconds)");
         else
             PrintError("Route already exists");
     }
@@ -123,6 +163,13 @@ class Program
         Console.WriteLine($"Route: {route.Name}");
         Console.WriteLine($"Limit: {route.Limit}");
         Console.WriteLine($"Used : {route.CurrentCount}");
+        
+        // show additional info for time-based routes
+        if (route is TimeLimiter timeLimiter)
+        {
+            Console.WriteLine($"Window: {timeLimiter.WindowSeconds} seconds");
+            Console.WriteLine($"Window started: {timeLimiter.WindowStart:HH:mm:ss}");
+        }
     }
 
     static void HandleReset(IRateLimiterService service)
@@ -153,7 +200,8 @@ class Program
         Console.WriteLine();
         Console.WriteLine("Available commands:");
         Console.WriteLine();
-        Console.WriteLine("add     - Add new route");
+        Console.WriteLine("add      - Add new counter route");
+        Console.WriteLine("addtime  - Add new time-based route");
         Console.WriteLine("request - Send request to route");
         Console.WriteLine("status  - View route usage");
         Console.WriteLine("help    - Show help");
