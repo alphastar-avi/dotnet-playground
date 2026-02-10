@@ -1,0 +1,891 @@
+=== PROJECT STRUCTURE ===
+
+Folder PATH listing for volume OS
+Volume serial number is 8A62-40EE
+C:.
+|   ApiRateLimiter.csproj
+|   combined-code.txt
+|   Program.cs
+|   
++---bin
+|   +---Debug
+|   |   \---net10.0
+|   |       |   ApiRateLimiter.deps.json
+|   |       |   ApiRateLimiter.dll
+|   |       |   ApiRateLimiter.exe
+|   |       |   ApiRateLimiter.pdb
+|   |       |   ApiRateLimiter.runtimeconfig.json
+|   |       |   Azure.Core.dll
+|   |       |   Azure.Identity.dll
+|   |       |   Microsoft.Bcl.AsyncInterfaces.dll
+|   |       |   Microsoft.Data.SqlClient.dll
+|   |       |   Microsoft.Extensions.Caching.Abstractions.dll
+|   |       |   Microsoft.Extensions.Caching.Memory.dll
+|   |       |   Microsoft.Extensions.DependencyInjection.Abstractions.dll
+|   |       |   Microsoft.Extensions.Logging.Abstractions.dll
+|   |       |   Microsoft.Extensions.Options.dll
+|   |       |   Microsoft.Extensions.Primitives.dll
+|   |       |   Microsoft.Identity.Client.dll
+|   |       |   Microsoft.Identity.Client.Extensions.Msal.dll
+|   |       |   Microsoft.IdentityModel.Abstractions.dll
+|   |       |   Microsoft.IdentityModel.JsonWebTokens.dll
+|   |       |   Microsoft.IdentityModel.Logging.dll
+|   |       |   Microsoft.IdentityModel.Protocols.dll
+|   |       |   Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+|   |       |   Microsoft.IdentityModel.Tokens.dll
+|   |       |   Microsoft.SqlServer.Server.dll
+|   |       |   System.ClientModel.dll
+|   |       |   System.Configuration.ConfigurationManager.dll
+|   |       |   System.Diagnostics.EventLog.dll
+|   |       |   System.IdentityModel.Tokens.Jwt.dll
+|   |       |   System.Memory.Data.dll
+|   |       |   System.Security.Cryptography.Pkcs.dll
+|   |       |   System.Security.Cryptography.ProtectedData.dll
+|   |       |   
+|   |       +---cs
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---de
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---es
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---fr
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---it
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---ja
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---ko
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---pl
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---pt-BR
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---ru
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---runtimes
+|   |       |   +---unix
+|   |       |   |   \---lib
+|   |       |   |       \---net9.0
+|   |       |   |               Microsoft.Data.SqlClient.dll
+|   |       |   |               
+|   |       |   +---win
+|   |       |   |   \---lib
+|   |       |   |       \---net9.0
+|   |       |   |               Microsoft.Data.SqlClient.dll
+|   |       |   |               System.Diagnostics.EventLog.dll
+|   |       |   |               System.Diagnostics.EventLog.Messages.dll
+|   |       |   |               System.Security.Cryptography.Pkcs.dll
+|   |       |   |               
+|   |       |   +---win-arm64
+|   |       |   |   \---native
+|   |       |   |           Microsoft.Data.SqlClient.SNI.dll
+|   |       |   |           
+|   |       |   +---win-x64
+|   |       |   |   \---native
+|   |       |   |           Microsoft.Data.SqlClient.SNI.dll
+|   |       |   |           
+|   |       |   \---win-x86
+|   |       |       \---native
+|   |       |               Microsoft.Data.SqlClient.SNI.dll
+|   |       |               
+|   |       +---tr
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       +---zh-Hans
+|   |       |       Microsoft.Data.SqlClient.resources.dll
+|   |       |       
+|   |       \---zh-Hant
+|   |               Microsoft.Data.SqlClient.resources.dll
+|   |               
+|   \---Release
+|       \---net10.0
++---cli
+|       ApiRateLimiterCli.cs
+|       
++---Data
+|       DatabaseHelper.cs
+|       
++---Models
+|       CounterLimiter.cs
+|       RateLimiterBase.cs
+|       TimeLimiter.cs
+|       
++---obj
+|   |   ApiRateLimiter.csproj.nuget.dgspec.json
+|   |   ApiRateLimiter.csproj.nuget.g.props
+|   |   ApiRateLimiter.csproj.nuget.g.targets
+|   |   project.assets.json
+|   |   project.nuget.cache
+|   |   
+|   +---Debug
+|   |   \---net10.0
+|   |       |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+|   |       |   ApiRateL.34AF3260.Up2Date
+|   |       |   ApiRateLimiter.AssemblyInfo.cs
+|   |       |   ApiRateLimiter.AssemblyInfoInputs.cache
+|   |       |   ApiRateLimiter.assets.cache
+|   |       |   ApiRateLimiter.csproj.AssemblyReference.cache
+|   |       |   ApiRateLimiter.csproj.CoreCompileInputs.cache
+|   |       |   ApiRateLimiter.csproj.FileListAbsolute.txt
+|   |       |   ApiRateLimiter.dll
+|   |       |   ApiRateLimiter.GeneratedMSBuildEditorConfig.editorconfig
+|   |       |   ApiRateLimiter.genruntimeconfig.cache
+|   |       |   ApiRateLimiter.GlobalUsings.g.cs
+|   |       |   ApiRateLimiter.pdb
+|   |       |   ApiRateLimiter.sourcelink.json
+|   |       |   apphost.exe
+|   |       |   
+|   |       +---ref
+|   |       |       ApiRateLimiter.dll
+|   |       |       
+|   |       \---refint
+|   |               ApiRateLimiter.dll
+|   |               
+|   \---Release
+|       \---net10.0
+|           |   .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+|           |   ApiRateLimiter.AssemblyInfo.cs
+|           |   ApiRateLimiter.AssemblyInfoInputs.cache
+|           |   ApiRateLimiter.assets.cache
+|           |   ApiRateLimiter.csproj.AssemblyReference.cache
+|           |   ApiRateLimiter.GeneratedMSBuildEditorConfig.editorconfig
+|           |   ApiRateLimiter.GlobalUsings.g.cs
+|           |   
+|           +---ref
+|           \---refint
+\---Services
+        IRateLimiterService.cs
+        RateLimiterService.cs
+        SqlRateLimiterService.cs
+        
+
+
+=== SOURCE CODE ===
+
+
+=== cli\ApiRateLimiterCli.cs ===
+
+using System;
+using Services;
+using Models;
+
+namespace ApiRateLimiter.Cli
+{
+
+    class ApiRateLimiterCli
+    {
+        public static void Start(IRateLimiterService rateLimiter)
+        {
+            // welcome message 
+            PrintHeader();
+
+            // until control + c, run this loop 
+            while (true)
+            {
+                Console.Write("> ");
+                string? input = Console.ReadLine();
+
+                // White space or null input can be skipped
+                if (string.IsNullOrWhiteSpace(input))
+                    continue;
+
+                string command = input.Trim().ToLower();
+
+                // match from the terminal
+                switch (command)
+                {
+                    case "help":
+                        PrintHelp();
+                        break;
+
+                    case "add":
+                        HandleAdd(rateLimiter);
+                        Console.WriteLine();
+                        break;
+
+                    case "addtime":
+                        HandleAddTime(rateLimiter);
+                        Console.WriteLine();
+                        break;
+
+                    case "request":
+                        HandleRequest(rateLimiter);
+                        Console.WriteLine();
+                        break;
+
+                    case "status":
+                        HandleStatus(rateLimiter);
+                        Console.WriteLine();
+                        break;
+
+                    case "clear":
+                        Console.Clear();
+                        PrintHeader();
+                        break;
+
+                    case "exit":
+                        Console.WriteLine("Exiting application...");
+                        return;
+
+                    case "reset":
+                        HandleReset(rateLimiter);
+                        Console.WriteLine();
+                        break;
+
+                    default:
+                        PrintError("Unknown command");
+                        break;
+                }
+            }
+        }
+
+        // Add a new API route with counter strategy
+        static void HandleAdd(IRateLimiterService service)
+        {
+            Console.Write("Route name: ");
+            string? name = Console.ReadLine();
+
+            Console.Write("Limit: ");
+            string? limitInput = Console.ReadLine();
+
+            // check if limit is a valid integer
+            if (!int.TryParse(limitInput, out int limit) || limit <= 0)
+            {
+                PrintError("Invalid limit");
+                return;
+            }
+
+            // try to add route with counter strategy
+            bool added = service.AddRoute(name!, limit);
+
+            if (added)
+                Console.WriteLine("Counter route added successfully");
+            else
+                PrintError("Route already exists");
+        }
+
+        // Add a new API route with time strategy
+        static void HandleAddTime(IRateLimiterService service)
+        {
+            Console.Write("Route name: ");
+            string? name = Console.ReadLine();
+
+            Console.Write("Limit: ");
+            string? limitInput = Console.ReadLine();
+
+            Console.Write("Window (seconds): ");
+            string? windowInput = Console.ReadLine();
+
+            // check if inputs are valid integers
+            if (!int.TryParse(limitInput, out int limit) || limit <= 0)
+            {
+                PrintError("Invalid limit");
+                return;
+            }
+
+            if (!int.TryParse(windowInput, out int windowSeconds) || windowSeconds <= 0)
+            {
+                PrintError("Invalid window seconds");
+                return;
+            }
+
+            // try to add route with time strategy
+            bool added = service.AddTimeRoute(name!, limit, windowSeconds);
+
+            if (added)
+                Console.WriteLine($"Time route added successfully ({limit} requests per {windowSeconds} seconds)");
+            else
+                PrintError("Route already exists");
+        }
+
+        // simulate api request
+        static void HandleRequest(IRateLimiterService service)
+        {
+            Console.Write("Route name: ");
+            string? name = Console.ReadLine();
+
+            bool allowed = service.TryRequest(name!);
+
+            if (allowed)
+                Console.WriteLine("Request allowed");
+            else
+                PrintError("Request denied");
+        }
+
+        // show route usage details
+        static void HandleStatus(IRateLimiterService service)
+        {
+            Console.Write("Route name: ");
+            string? name = Console.ReadLine();
+
+            var route = service.GetRoute(name!);
+
+            if (route == null)
+            {
+                PrintError("Route not found");
+                return;
+            }
+
+            Console.WriteLine($"Route: {route.Name}");
+            Console.WriteLine($"Limit: {route.Limit}");
+            Console.WriteLine($"Used : {route.CurrentCount}");
+
+            // show additional info for time-based routes
+            if (route is TimeLimiter timeLimiter)
+            {
+                Console.WriteLine($"Window: {timeLimiter.WindowSeconds} seconds");
+                Console.WriteLine($"Window started: {timeLimiter.WindowStart:HH:mm:ss}");
+            }
+        }
+
+        static void HandleReset(IRateLimiterService service)
+        {
+            Console.Write("Route name: ");
+            string? name = Console.ReadLine();
+
+            if (!service.ResetRoute(name!))
+                PrintError("Route not found");
+            else
+                Console.WriteLine("Route Limit resetted");
+        }
+
+        // default startup message
+        static void PrintHeader()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine();
+            Console.WriteLine("API Rate Limiter");
+            Console.WriteLine("Type help for commands");
+            Console.WriteLine("---------------------");
+            Console.WriteLine();
+            Console.ResetColor();
+        }
+
+        // show available cli commands
+        static void PrintHelp()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Available commands:");
+            Console.WriteLine();
+            Console.WriteLine("add      - Add new counter route");
+            Console.WriteLine("addtime  - Add new time-based route");
+            Console.WriteLine("request - Send request to route");
+            Console.WriteLine("status  - View route usage");
+            Console.WriteLine("help    - Show help");
+            Console.WriteLine("clear   - Clear console");
+            Console.WriteLine("exit    - Exit application");
+            Console.WriteLine();
+        }
+
+        // to print error in consistent format
+        static void PrintError(string message)
+        {
+            Console.WriteLine($"Error: {message}");
+        }
+    }
+}
+
+
+=== Data\DatabaseHelper.cs ===
+
+using System;
+using System.Data;
+using Microsoft.Data.SqlClient;
+
+namespace Data
+{
+    public class DatabaseHelper
+    {
+        private readonly string _connectionString;
+
+        public DatabaseHelper()
+        {
+            _connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=RateLimiterDB;Integrated Security=true;TrustServerCertificate=true;";
+        }
+
+        public SqlConnection GetConnection()
+        {
+            return new SqlConnection(_connectionString);
+        }
+
+        public DataTable ExecuteQuery(string query, SqlParameter[]? parameters = null)
+        {
+            using var connection = GetConnection();
+            using var command = new SqlCommand(query, connection);
+
+            if (parameters != null)
+                command.Parameters.AddRange(parameters);
+
+            var dataTable = new DataTable();
+            var adapter = new SqlDataAdapter(command);
+
+            connection.Open();
+            adapter.Fill(dataTable);
+
+            return dataTable;
+        }
+
+        public int ExecuteNonQuery(string query, SqlParameter[]? parameters = null)
+        {
+            using var connection = GetConnection();
+            using var command = new SqlCommand(query, connection);
+
+            if (parameters != null)
+                command.Parameters.AddRange(parameters);
+
+            connection.Open();
+            return command.ExecuteNonQuery();
+        }
+
+        public object? ExecuteScalar(string query, SqlParameter[]? parameters = null)
+        {
+            using var connection = GetConnection();
+            using var command = new SqlCommand(query, connection);
+
+            if (parameters != null)
+                command.Parameters.AddRange(parameters);
+
+            connection.Open();
+            return command.ExecuteScalar();
+        }
+    }
+}
+
+=== Models\CounterLimiter.cs ===
+
+namespace Models
+{
+    // counter mode for apiroute
+    class CounterLimiter : RateLimiterBase // inherit rateLimiterBase
+    {   
+        //Call parent constructor
+        public CounterLimiter(string name, int limit) : base(name, limit)
+        {
+        }
+
+        // override, counter update per request
+        public override bool AllowRequest()
+        {
+            if (currentCount >= Limit)
+                return false;
+
+            currentCount++;
+            return true;
+        }
+    }
+}
+
+=== Models\RateLimiterBase.cs ===
+
+using System;
+
+namespace Models
+{
+    // abstract base for all rate limiting mode (since we have two now 1.counter and 2.timer)
+    abstract class RateLimiterBase
+    {
+        public string Name { get; protected set; }
+        public int Limit { get; protected set; }
+        protected int currentCount;
+
+        // constructor,initilization of limiters with name and limit
+        protected RateLimiterBase(string name, int limit)
+        {
+            Name = name;
+            Limit = limit;
+            currentCount = 0;
+        }
+
+        // abstract method, other class needs to use this
+        public abstract bool AllowRequest();
+
+        // for resetting current count
+        public virtual void Reset()
+        {
+            currentCount = 0;
+        }
+
+        // 'get' shorthand for c# , to get the current counnt value
+        public virtual int CurrentCount => currentCount;
+    }
+}
+
+=== Models\TimeLimiter.cs ===
+
+using System;
+
+namespace Models
+{
+    // time mode for api route
+    class TimeLimiter : RateLimiterBase // inherit parent
+    {
+        private DateTime windowStart;
+        private int windowSeconds;
+
+        public TimeLimiter(string name, int limit, int windowSeconds) : base(name, limit)
+        {
+            this.windowSeconds = windowSeconds;  // Store window duration
+            windowStart = DateTime.Now; // save the time of created 
+        }
+
+        // check if window expired and reset if needed
+        private void CheckAndResetWindow()
+        {
+            DateTime now = DateTime.Now;
+            
+            if ((now - windowStart).TotalSeconds >= windowSeconds) //converts that TimeSpan to seconds and check with the windowseconds
+            {
+                Reset();
+                windowStart = now;
+            }
+        }
+
+        // allow request for time mode
+        public override bool AllowRequest()
+        {
+            CheckAndResetWindow();
+
+            // check limit within current window
+            if (currentCount >= Limit)
+                return false;
+
+            currentCount++;
+            return true;
+        }
+
+        // override current count to check window first
+        public override int CurrentCount 
+        { 
+            get 
+            {
+                CheckAndResetWindow();
+                return currentCount;
+            }
+        }
+
+        // show window start and seconds ( get )
+        public int WindowSeconds => windowSeconds;
+        public DateTime WindowStart => windowStart;
+    }
+}
+
+=== Services\IRateLimiterService.cs ===
+
+using Models;
+
+namespace Services
+{
+    // Interface for just defining a contract ( exposing the capabilities )
+    interface IRateLimiterService
+    {  
+        //add a new API route with counter strategy
+        bool AddRoute(string name, int limit);
+        
+        //add a new API route with time strategy
+        bool AddTimeRoute(string name, int limit, int windowSeconds);
+        
+        //process a request for a route.
+        bool TryRequest(string routeName);
+        
+        // get route detail
+        RateLimiterBase? GetRoute(string routeName);
+        
+        // to reset the current count for a route to 0
+        bool ResetRoute(string routeName);
+    }
+}
+
+
+=== Services\RateLimiterService.cs ===
+
+using System.Collections.Generic;
+using Models;
+
+namespace Services{
+
+    class RateLimiterService : IRateLimiterService
+    {   
+        //map to hold the relation - now stores RateLimiterBase instead of ApiRoute
+        private readonly Dictionary<string, RateLimiterBase> _routes;
+
+        // Default constructor for _routes as dictonary
+        public RateLimiterService()
+        {
+            _routes = new Dictionary<string, RateLimiterBase>();
+        }
+
+        // To add a new route with counter strategy
+        public bool AddRoute(string name, int limit)
+        {
+            if (_routes.ContainsKey(name)) return false; // route already present
+
+            _routes[name] = new CounterLimiter(name, limit); // create new counter limiter
+            return true;
+        }
+
+        // To add a new route with time strategy
+        public bool AddTimeRoute(string name, int limit, int windowSeconds)
+        {
+            if (_routes.ContainsKey(name)) return false; // route already present
+
+            _routes[name] = new TimeLimiter(name, limit, windowSeconds); // create new time limiter
+            return true;
+        }
+
+        // Accessing route on request - polymorphism in action
+        public bool TryRequest(string routeName)
+        {
+            if (!_routes.ContainsKey(routeName)) return false; // the route does not exist so return false 
+
+            return _routes[routeName].AllowRequest(); // calls the correct override method
+        }
+
+        // get the route if it present else give null
+        public RateLimiterBase? GetRoute(string routeName)
+        {
+            if (_routes.ContainsKey(routeName)) return _routes[routeName];
+
+            //if not present return null (the '?' allows null)
+            return null;
+        }
+
+        public bool ResetRoute(string routeName)
+        {
+            //if (_routes.ContainsKey(routeName))
+            //{
+            //    _routes[routeName].Reset();
+            //    return true;
+            //} Double lookup ... try get value is better i guess
+
+            if (!_routes.TryGetValue(routeName, out var route))
+                return false;
+
+            route.Reset();   // resets CurrentCount of that route - calls virtual method
+            return true;
+        }
+
+    }
+
+}
+
+
+=== Services\SqlRateLimiterService.cs ===
+
+using System;
+using System.Data;
+using Microsoft.Data.SqlClient;
+using Models;
+using Data;
+
+namespace Services
+{
+    public class SqlRateLimiterService : IRateLimiterService
+    {
+        private readonly DatabaseHelper _dbHelper;
+
+        public SqlRateLimiterService()
+        {
+            _dbHelper = new DatabaseHelper();
+        }
+
+        // Add a counter route
+        public bool AddRoute(string name, int limit)
+        {
+            try
+            {
+                string query = @"
+                    INSERT INTO dbo.Routes (Name, Limit, CurrentCount, LimiterType, WindowSeconds, WindowStart)
+                    VALUES (@Name, @Limit, 0, 'Counter', NULL, NULL)";
+
+                var parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@Name", name),
+                    new SqlParameter("@Limit", limit)
+                };
+
+                _dbHelper.ExecuteNonQuery(query, parameters);
+                return true;
+            }
+            catch (SqlException)
+            {
+                // Route already exists (unique constraint violation)
+                return false;
+            }
+        }
+
+        // Add a time-based route
+        public bool AddTimeRoute(string name, int limit, int windowSeconds)
+        {
+            try
+            {
+                string query = @"
+                    INSERT INTO dbo.Routes (Name, Limit, CurrentCount, LimiterType, WindowSeconds, WindowStart)
+                    VALUES (@Name, @Limit, 0, 'Time', @WindowSeconds, GETDATE())";
+
+                var parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@Name", name),
+                    new SqlParameter("@Limit", limit),
+                    new SqlParameter("@WindowSeconds", windowSeconds)
+                };
+
+                _dbHelper.ExecuteNonQuery(query, parameters);
+                return true;
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+        }
+
+        // Try to make a request
+        public bool TryRequest(string routeName)
+        {
+            var route = GetRoute(routeName);
+            if (route == null) return false;
+
+            // Check if time-based route needs window reset
+            if (route is TimeLimiter timeLimiter)
+            {
+                // Window reset is handled by the TimeLimiter class itself
+                if (route.CurrentCount >= route.Limit)
+                    return false;
+            }
+            else
+            {
+                // Counter-based route
+                if (route.CurrentCount >= route.Limit)
+                    return false;
+            }
+
+            // Increment the counter in database
+            string query = @"
+                UPDATE dbo.Routes 
+                SET CurrentCount = CurrentCount + 1 
+                WHERE Name = @Name";
+
+            var parameters = new SqlParameter[]
+            {
+                new SqlParameter("@Name", routeName)
+            };
+
+            _dbHelper.ExecuteNonQuery(query, parameters);
+            return true;
+        }
+
+        // Get route details
+        public RateLimiterBase? GetRoute(string routeName)
+        {
+            string query = "SELECT * FROM dbo.Routes WHERE Name = @Name";
+
+            var parameters = new SqlParameter[]
+            {
+                new SqlParameter("@Name", routeName)
+            };
+
+            var dataTable = _dbHelper.ExecuteQuery(query, parameters);
+
+            if (dataTable.Rows.Count == 0)
+                return null;
+
+            var row = dataTable.Rows[0];
+            string limiterType = row["LimiterType"].ToString()!;
+            string name = row["Name"].ToString()!;
+            int limit = Convert.ToInt32(row["Limit"]);
+            int currentCount = Convert.ToInt32(row["CurrentCount"]);
+
+            if (limiterType == "Counter")
+            {
+                var counterLimiter = new CounterLimiter(name, limit);
+                // Set the current count using reflection or by making a method
+                // For now, we'll create a workaround
+                for (int i = 0; i < currentCount; i++)
+                {
+                    counterLimiter.AllowRequest();
+                }
+                return counterLimiter;
+            }
+            else if (limiterType == "Time")
+            {
+                int windowSeconds = Convert.ToInt32(row["WindowSeconds"]);
+                DateTime windowStart = Convert.ToDateTime(row["WindowStart"]);
+
+                var timeLimiter = new TimeLimiter(name, limit, windowSeconds);
+
+                // Check if window expired and reset if needed
+                if ((DateTime.Now - windowStart).TotalSeconds >= windowSeconds)
+                {
+                    // Reset the window in database
+                    string resetQuery = @"
+                        UPDATE dbo.Routes 
+                        SET CurrentCount = 0, WindowStart = GETDATE() 
+                        WHERE Name = @Name";
+
+                    var resetParams = new SqlParameter[]
+                    {
+                        new SqlParameter("@Name", routeName)
+                    };
+
+                    _dbHelper.ExecuteNonQuery(resetQuery, resetParams);
+                    return timeLimiter;
+                }
+
+                // Simulate current count
+                for (int i = 0; i < currentCount; i++)
+                {
+                    timeLimiter.AllowRequest();
+                }
+
+                return timeLimiter;
+            }
+
+            return null;
+        }
+
+        // Reset a route
+        public bool ResetRoute(string routeName)
+        {
+            string query = @"
+                UPDATE dbo.Routes 
+                SET CurrentCount = 0, WindowStart = GETDATE() 
+                WHERE Name = @Name";
+
+            var parameters = new SqlParameter[]
+            {
+                new SqlParameter("@Name", routeName)
+            };
+
+            int rowsAffected = _dbHelper.ExecuteNonQuery(query, parameters);
+            return rowsAffected > 0;
+        }
+    }
+}
+
+=== Program.cs ===
+
+using Services;
+
+using ApiRateLimiter.Cli;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        //var rateLimiter = new RateLimiterService();
+        IRateLimiterService rateLimiter = new SqlRateLimiterService(); //(For in-memory use)new RateLimiterService(); //DI using interface
+
+        ApiRateLimiterCli.Start(rateLimiter);
+    }
+}
+

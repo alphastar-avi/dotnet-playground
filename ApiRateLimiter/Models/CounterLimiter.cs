@@ -1,7 +1,7 @@
 namespace Models
 {
     // counter mode for apiroute
-    class CounterLimiter : RateLimiterBase // inherit rateLimiterBase
+    public class CounterLimiter : RateLimiterBase // inherit rateLimiterBase
     {   
         //Call parent constructor
         public CounterLimiter(string name, int limit) : base(name, limit)

@@ -3,7 +3,7 @@ using System;
 namespace Models
 {
     // time mode for api route
-    class TimeLimiter : RateLimiterBase // inherit parent
+    public class TimeLimiter : RateLimiterBase // inherit parent
     {
         private DateTime windowStart;
         private int windowSeconds;

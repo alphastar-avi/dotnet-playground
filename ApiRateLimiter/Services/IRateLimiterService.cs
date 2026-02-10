@@ -3,7 +3,7 @@ using Models;
 namespace Services
 {
     // Interface for just defining a contract ( exposing the capabilities )
-    interface IRateLimiterService
+    public interface IRateLimiterService
     {  
         //add a new API route with counter strategy
         bool AddRoute(string name, int limit);
