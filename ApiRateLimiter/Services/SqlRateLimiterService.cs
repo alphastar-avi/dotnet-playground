@@ -15,14 +15,12 @@ namespace Services
             _dbHelper = new DatabaseHelper();
         }
 
-        // Add a counter route
+        // Add a counter route using stored procedure
         public bool AddRoute(string name, int limit)
         {
             try
             {
-                string query = @"
-                    INSERT INTO dbo.Routes (Name, Limit, CurrentCount, LimiterType, WindowSeconds, WindowStart)
-                    VALUES (@Name, @Limit, 0, 'Counter', NULL, NULL)";
+                string query = "EXEC dbo.sp_AddCounterRoute @Name, @Limit";
 
                 var parameters = new SqlParameter[]
                 {
@@ -30,24 +28,29 @@ namespace Services
                     new SqlParameter("@Limit", limit)
                 };
 
-                _dbHelper.ExecuteNonQuery(query, parameters);
-                return true;
+                var result = _dbHelper.ExecuteQuery(query, parameters);
+
+                // Check Success column from stored procedure result
+                if (result.Rows.Count > 0)
+                {
+                    int success = Convert.ToInt32(result.Rows[0]["Success"]);
+                    return success == 1;
+                }
+
+                return false;
             }
             catch (SqlException)
             {
-                // Route already exists (unique constraint violation)
                 return false;
             }
         }
 
-        // Add a time-based route
+        // Add a time-based route using stored procedure
         public bool AddTimeRoute(string name, int limit, int windowSeconds)
         {
             try
             {
-                string query = @"
-                    INSERT INTO dbo.Routes (Name, Limit, CurrentCount, LimiterType, WindowSeconds, WindowStart)
-                    VALUES (@Name, @Limit, 0, 'Time', @WindowSeconds, GETDATE())";
+                string query = "EXEC dbo.sp_AddTimeRoute @Name, @Limit, @WindowSeconds";
 
                 var parameters = new SqlParameter[]
                 {
@@ -56,8 +59,16 @@ namespace Services
                     new SqlParameter("@WindowSeconds", windowSeconds)
                 };
 
-                _dbHelper.ExecuteNonQuery(query, parameters);
-                return true;
+                var result = _dbHelper.ExecuteQuery(query, parameters);
+
+                // Check Success column from stored procedure result
+                if (result.Rows.Count > 0)
+                {
+                    int success = Convert.ToInt32(result.Rows[0]["Success"]);
+                    return success == 1;
+                }
+
+                return false;
             }
             catch (SqlException)
             {
@@ -65,125 +76,117 @@ namespace Services
             }
         }
 
-        // Try to make a request
+        // Try to make a request using stored procedure
         public bool TryRequest(string routeName)
         {
-            var route = GetRoute(routeName);
-            if (route == null) return false;
-
-            // Check if time-based route needs window reset
-            if (route is TimeLimiter timeLimiter)
+            try
             {
-                // Window reset is handled by the TimeLimiter class itself
-                if (route.CurrentCount >= route.Limit)
-                    return false;
+                string query = "EXEC dbo.sp_TryRequest @Name";
+
+                var parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@Name", routeName)
+                };
+
+                var result = _dbHelper.ExecuteQuery(query, parameters);
+
+                // Check Allowed column from stored procedure result
+                if (result.Rows.Count > 0)
+                {
+                    int allowed = Convert.ToInt32(result.Rows[0]["Allowed"]);
+                    return allowed == 1;
+                }
+
+                return false;
             }
-            else
+            catch (SqlException)
             {
-                // Counter-based route
-                if (route.CurrentCount >= route.Limit)
-                    return false;
+                return false;
             }
-
-            // Increment the counter in database
-            string query = @"
-                UPDATE dbo.Routes 
-                SET CurrentCount = CurrentCount + 1 
-                WHERE Name = @Name";
-
-            var parameters = new SqlParameter[]
-            {
-                new SqlParameter("@Name", routeName)
-            };
-
-            _dbHelper.ExecuteNonQuery(query, parameters);
-            return true;
         }
 
-        // Get route details
+        // Get route details using stored procedure
         public RateLimiterBase? GetRoute(string routeName)
         {
-            string query = "SELECT * FROM dbo.Routes WHERE Name = @Name";
-
-            var parameters = new SqlParameter[]
+            try
             {
-                new SqlParameter("@Name", routeName)
-            };
+                string query = "EXEC dbo.sp_GetRoute @Name";
 
-            var dataTable = _dbHelper.ExecuteQuery(query, parameters);
-
-            if (dataTable.Rows.Count == 0)
-                return null;
-
-            var row = dataTable.Rows[0];
-            string limiterType = row["LimiterType"].ToString()!;
-            string name = row["Name"].ToString()!;
-            int limit = Convert.ToInt32(row["Limit"]);
-            int currentCount = Convert.ToInt32(row["CurrentCount"]);
-
-            if (limiterType == "Counter")
-            {
-                var counterLimiter = new CounterLimiter(name, limit);
-                // Set the current count using reflection or by making a method
-                // For now, we'll create a workaround
-                for (int i = 0; i < currentCount; i++)
+                var parameters = new SqlParameter[]
                 {
-                    counterLimiter.AllowRequest();
-                }
-                return counterLimiter;
-            }
-            else if (limiterType == "Time")
-            {
-                int windowSeconds = Convert.ToInt32(row["WindowSeconds"]);
-                DateTime windowStart = Convert.ToDateTime(row["WindowStart"]);
+                    new SqlParameter("@Name", routeName)
+                };
 
-                var timeLimiter = new TimeLimiter(name, limit, windowSeconds);
+                var dataTable = _dbHelper.ExecuteQuery(query, parameters);
 
-                // Check if window expired and reset if needed
-                if ((DateTime.Now - windowStart).TotalSeconds >= windowSeconds)
+                if (dataTable.Rows.Count == 0)
+                    return null;
+
+                var row = dataTable.Rows[0];
+                string limiterType = row["LimiterType"].ToString()!;
+                string name = row["Name"].ToString()!;
+                int limit = Convert.ToInt32(row["Limit"]);
+                int currentCount = Convert.ToInt32(row["CurrentCount"]);
+
+                if (limiterType == "Counter")
                 {
-                    // Reset the window in database
-                    string resetQuery = @"
-                        UPDATE dbo.Routes 
-                        SET CurrentCount = 0, WindowStart = GETDATE() 
-                        WHERE Name = @Name";
-
-                    var resetParams = new SqlParameter[]
+                    var counterLimiter = new CounterLimiter(name, limit);
+                    // Simulate current count by calling AllowRequest
+                    for (int i = 0; i < currentCount; i++)
                     {
-                        new SqlParameter("@Name", routeName)
-                    };
+                        counterLimiter.AllowRequest();
+                    }
+                    return counterLimiter;
+                }
+                else if (limiterType == "Time")
+                {
+                    int windowSeconds = Convert.ToInt32(row["WindowSeconds"]);
+                    var timeLimiter = new TimeLimiter(name, limit, windowSeconds);
 
-                    _dbHelper.ExecuteNonQuery(resetQuery, resetParams);
+                    // Simulate current count
+                    for (int i = 0; i < currentCount; i++)
+                    {
+                        timeLimiter.AllowRequest();
+                    }
+
                     return timeLimiter;
                 }
 
-                // Simulate current count
-                for (int i = 0; i < currentCount; i++)
-                {
-                    timeLimiter.AllowRequest();
-                }
-
-                return timeLimiter;
+                return null;
             }
-
-            return null;
+            catch (SqlException)
+            {
+                return null;
+            }
         }
 
-        // Reset a route
+        // Reset a route using stored procedure
         public bool ResetRoute(string routeName)
         {
-            string query = @"
-                UPDATE dbo.Routes 
-                SET CurrentCount = 0, WindowStart = GETDATE() 
-                WHERE Name = @Name";
-
-            var parameters = new SqlParameter[]
+            try
             {
-                new SqlParameter("@Name", routeName)
-            };
+                string query = "EXEC dbo.sp_ResetRoute @Name";
 
-            int rowsAffected = _dbHelper.ExecuteNonQuery(query, parameters);
-            return rowsAffected > 0;
+                var parameters = new SqlParameter[]
+                {
+                    new SqlParameter("@Name", routeName)
+                };
+
+                var result = _dbHelper.ExecuteQuery(query, parameters);
+
+                // Check Success column from stored procedure result
+                if (result.Rows.Count > 0)
+                {
+                    int success = Convert.ToInt32(result.Rows[0]["Success"]);
+                    return success == 1;
+                }
+
+                return false;
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
         }
     }
 }
