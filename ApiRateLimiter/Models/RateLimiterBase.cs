@@ -3,7 +3,7 @@ using System;
 namespace Models
 {
     // abstract base for all rate limiting mode (since we have two now 1.counter and 2.timer)
-    abstract class RateLimiterBase
+    public abstract class RateLimiterBase
     {
         public string Name { get; protected set; }
         public int Limit { get; protected set; }
